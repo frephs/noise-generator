@@ -1,0 +1,107 @@
+body {
+    background-color: #FDF0D1;
+    color: #643843;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls {
+    font-size: 1.5em;
+    font-weight: bold;
+    border: solid 4px #85586F;
+    border-radius: 10px;
+    margin:10px;
+}
+.youtube {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+iframe{
+    border-radius: 10px;
+    width: 53vw;
+    height: 30vw;
+}
+
+
+input {
+    width: calc(80vw - 60px);
+    padding: 20px
+}
+
+label {
+    margin-top: 20px;
+}
+
+h2, label, div{
+    display: block;
+    padding: 10px 30px ;
+}
+
+input {
+    padding:10px;
+
+    --c: #85586F;
+    /* active color */
+    --g: 0.3em;
+    /* the gap */
+    --l: 0.5em;
+    /* line thickness*/
+    --s: 2em;
+    /* thumb size*/
+    
+    height: var(--s);
+    /* needed for Firefox*/
+    --_c: color-mix(in srgb, var(--c), #000 var(--p, 0%));
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+input:focus-visible,
+input:hover {
+    --p: 25%;
+}
+
+input:active,
+input:focus-visible {
+    --_b: var(--s)
+}
+
+/* chromium */
+input[type="range"]::-webkit-slider-thumb {
+    height: var(--s);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 0 0 0 var(--_b, var(--l)) inset var(--_c);
+    border-image: linear-gradient(90deg, var(--_c) 50%, #ababab 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+    -webkit-appearance: none;
+    appearance: none;
+    transition: .3s;
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-thumb {
+    height: var(--s);
+    width: var(--s);
+    background: none;
+    border-radius: 50%;
+    box-shadow: 0 0 0 var(--_b, var(--l)) inset var(--_c);
+    border-image: linear-gradient(90deg, var(--_c) 50%, #ababab 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+    -moz-appearance: none;
+    appearance: none;
+    transition: .3s;
+}
+
+@supports not (color: color-mix(in srgb, red, red)) {
+    input {
+        --_c: var(--c);
+    }
+}
+

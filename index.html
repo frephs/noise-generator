@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <main>
+        <h2> Controls</h2>
+        <div class="controls"></div> 
+        <div class="controls youtube">
+            <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk" title="lofi hip hop radio 📚 - beats to relax/study to" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </main>
+
+
+</body>
+
+<script>
+    function capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+
+
+    audios = ["brown", "pink", "white"];
+
+    for (let i = 0; i < audios.length; i++) {
+        document.querySelector("main").innerHTML += `<audio src="${capitalize(audios[i])}-noise.mp3" id="${audios[i]}" loop="true" volume="0"></audio>`
+
+        document.getElementById(audios[i]).volume = 0;
+        document.querySelector(".controls").innerHTML += `<label for="${audios[i]}">${capitalize(audios[i])} noise</label> <input class="slider" id="input-${audios[i]}" name="${audios[i]}" value="0" type="range" min="0" max="1" step="0.01" onchange="changeVolume('${audios[i]}')">`
+    }
+
+    function changeVolume(audio) {
+        if (document.getElementById("input-" + audio.toString()).value > 0) {
+            document.getElementById(audio).play();
+        } else {
+            document.getElementById(audio).pause();
+        }
+
+        document.getElementById(audio).volume = document.getElementById("input-" + audio.toString()).value;
+        return document.getElementById(audio).volume;
+    }
+
+    function changeMasterVolume() {
+        for (let i = 0; i < audios.length; i++) {
+            document.getElementById(audios[i]).volume = changeVolume(audios[i])* document.getElementById("input-master").value;
+        }
+    }
+    // document.querySelector(".controls").innerHTML += `<label for="master">Master volume</label> <input class="slider" id="input-master" name="master" value="0" type="range" min="0" max="1" step="0.01" onchange="changeMasterVolume()">`
+
+</script>
+
+</html>
