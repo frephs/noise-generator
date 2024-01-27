@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ambiernt Noise</title>
+    <title>Ambient Noise</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
@@ -35,7 +35,7 @@
         document.querySelector("main").innerHTML += `<audio src="${capitalize(audios[i])}-noise.mp3" id="${audios[i]}" loop="true" volume="0"></audio>`
 
         document.getElementById(audios[i]).volume = 0;
-        document.querySelector(".controls").innerHTML += `<label for="${audios[i]}">${capitalize(audios[i])} noise</label> <input class="slider" id="input-${audios[i]}" name="${audios[i]}" value="0" type="range" min="0" max="1" step="0.01" onchange="changeVolume('${audios[i]}')" orient="vertical">`
+        document.querySelector(".controls").innerHTML += `<label for="${audios[i]}">${capitalize(audios[i])} noise</label> <input class="slider" id="input-${audios[i]}" name="${audios[i]}" value="0" type="range" min="0" max="1" step="0.01" onchange="changeVolume('${audios[i]}')">`
     }
 
     function changeVolume(audio) {
